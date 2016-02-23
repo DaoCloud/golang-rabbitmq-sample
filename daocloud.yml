@@ -1,0 +1,16 @@
+image: daocloud/ci-golang:1.4
+
+services:
+  - rabbitmq
+
+install:
+  - sudo apt-get update
+
+before_script:
+  - mkdir -p /gopath/src/golang-rabbitmq-sample
+  - mv ./* /gopath/src/golang-rabbitmq-sample
+
+script:
+  - export GOPATH=/gopath
+  - go get -t golang-rabbitmq-sample
+  - go test golang-rabbitmq-sample
